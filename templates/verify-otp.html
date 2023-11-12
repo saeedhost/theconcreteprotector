@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+      <div class="content-wrapper d-flex align-items-center auth px-0">
+        <div class="row w-100 mx-0">
+          <div class="col-lg-4 mx-auto">
+            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+              <div class="brand-logo">
+                <img src="/static/images/logo.svg" alt="logo">
+              </div>
+              <h6 class="fw-light">OTP has sent to: <i><b>{{ valid_email }}</b></i> </h6>
+              {% if messages %}
+                  {% for message in messages %}
+                      <script>
+                          Swal.fire({
+                              icon: '{{ message.tags }}',
+                              text: '{{ message }}',
+                          });
+                      </script>
+                  {% endfor %}
+              {% endif %}
+              <form class="pt-3" method="post" action="{% url 'VerifyOtp' %}">
+                {% csrf_token %}
+                  <input type="hidden" name="otp_email_object" class="form-control form-control-lg" value="{{ valid_email }}">
+                  <input type="hidden" name="new_password" class="form-control form-control-lg" value="{{ new_password }}">
+                <div class="form-group">
+                  <input type="text" name="valid_otp" class="form-control form-control-lg" placeholder="valid OTP" required>
+                </div>
+                <div class="mt-3">
+                  <input type="submit" value="VERIFY OTP" class="btn btn-block btn-dark btn-lg font-weight-medium auth-form-btn">
+                </div>
+                <div class="mt-4 d-flex justify-content-center align-items-center">
+                  <a href="{% url 'ResetPsw' %}" class="auth-link text-black">Choose new password</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  
+  {% endblock %}

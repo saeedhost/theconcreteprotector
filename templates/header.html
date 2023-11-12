@@ -1,0 +1,183 @@
+{% if request.path == '/login/' or request.path == '/reset-password/' or request.path == '/verify-otp/' %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  {% if request.path == '/login/' %}
+    <title> Login </title>
+  {% endif %}
+
+  {% if request.path == '/reset-password/' %}
+    <title> Reset Password </title>
+  {% endif %}
+
+  {% if request.path == '/verify-otp/' %}
+    <title> Verify OTP </title>
+  {% endif %}
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="/static/vendors/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="/static/vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="/static/vendors/feather/feather.css">
+  <link rel="stylesheet" href="/static/vendors/typicons/typicons.css">
+  <link rel="stylesheet" href="/static/vendors/simple-line-icons/css/simple-line-icons.css">
+  <link rel="stylesheet" href="/static/vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="/static/vendors/vertical-layout-light/style.css">
+  <link rel="shortcut icon" href="/static/images/favicon.png" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+    </symbol>
+    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+    </symbol>
+    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+    </symbol>
+  </svg>
+</head>
+<body>
+
+{% else %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  {% if request.path == '/' %}
+    <title> Dashboard | Admin</title>
+  {% endif %}
+  
+  {% if request.path == '/add-user/' %}
+    <title>Add User | Admin</title>
+  {% endif %}
+
+  {% if request.path == '/users-list/' %}
+    <title>User List | Admin</title>
+  {% endif %}
+
+  <link rel="stylesheet" href="/static/vendors/feather/feather.css">
+  <link rel="stylesheet" href="/static/vendors/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="/static/vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="/static/vendors/typicons/typicons.css">
+  <link rel="stylesheet" href="/static/vendors/simple-line-icons/css/simple-line-icons.css">
+  <link rel="stylesheet" href="/static/vendors/css/vendor.bundle.base.css">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="/static/js/select.dataTables.min.css">
+  <link rel="stylesheet" href="/static/vendors/vertical-layout-light/style.css">
+  <link rel="shortcut icon" href="/static/images/favicon.png" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+    </symbol>
+    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+    </symbol>
+    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+    </symbol>
+  </svg>
+</head>
+<body>
+    <div class="container-scroller">
+        <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
+          <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
+            <div class="me-3">
+              <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-bs-toggle="minimize">
+                <span class="icon-menu"></span>
+              </button>
+            </div>
+            <div>
+              <a class="navbar-brand brand-logo" href="#">
+                <img src="/static/images/logo.svg" alt="logo" />
+              </a>
+              <a class="navbar-brand brand-logo-mini" href="#">
+                <img style="margin-top:-18px;" src="/static/images/logo-mini.svg" alt="logo" />
+              </a>
+            </div>
+          </div>
+          <div class="navbar-menu-wrapper d-flex align-items-top"> 
+            <ul class="navbar-nav">
+              {% if user.is_authenticated %}
+                <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
+                  <h1 class="welcome-text">Welcome, <span class="text-black fw-bold">{{ user.username }}</span></h1>
+                </li>
+              {% endif %}
+            </ul>
+        
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item dropdown d-none d-lg-block user-dropdown">
+                <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img class="img-xs rounded-circle" src="/static/images/user.png" alt="Profile image"> </a>
+                <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+                  <div class="dropdown-header text-center">
+                    <img class="img-md rounded-circle" width="40px" height="40px" src="/static/images/user.png" alt="Profile image">
+                    {% if user.is_authenticated %}
+                    <p class="mb-1 mt-3 font-weight-semibold">{{user.username}}</p>
+                    <p class="fw-light text-muted mb-0">{{user.email}}</p>
+                    {% endif %}
+                  </div>
+                  <a class="dropdown-item" href="/user-profile/{{request.user.id}}"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile</a>
+                  <a class="dropdown-item" href="{% url 'Logout' %}"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
+                </div>
+              </li>
+            </ul>
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-bs-toggle="offcanvas">
+              <span class="mdi mdi-menu"></span>
+            </button>
+          </div>
+        </nav>
+        
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+          <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <ul class="nav">
+
+              <li class="nav-item d-lg-none d-xl-none">
+                <a class="nav-link" href="/user-profile/{{request.user.id}}">
+                  <i class="menu-icon mdi mdi-account"></i>
+                  <span class="menu-title">Profile</span>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'Home' %}">
+                  <i class="mdi mdi-grid-large menu-icon"></i>
+                  <span class="menu-title">Dashboard</span>
+                </a>
+              </li>  
+    
+              {% if user.is_superuser %}
+              <li class="nav-item"> 
+                <a class="nav-link" href="{% url 'AddUser' %}"> 
+                  <i class="menu-icon mdi mdi-account-plus"></i>
+                  <span class="menu-title">Add User</span>
+                </a>
+              </li>
+              {% endif %}
+
+              <li class="nav-item"> 
+                <a class="nav-link" href="{% url 'UsersList' %}"> 
+                  <i class="menu-icon mdi mdi-account-multiple"></i>
+                  <span class="menu-title">View Users</span>
+                </a>
+              </li>
+    
+              <li class="nav-item"> 
+                <a class="nav-link" href="{% url 'Logout' %}"> 
+                  <i class="menu-icon mdi mdi-exit-to-app"></i>
+                  <span class="menu-title">Logout</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+{% endif %}
